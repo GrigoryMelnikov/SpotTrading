@@ -1,3 +1,7 @@
 from .config import Config
+from .logger import Logger
+from .binanceApi import BinanceAPI
 
-CONFIG = Config()
+config = Config()
+logger = Logger()
+api_wrapper = BinanceAPI()

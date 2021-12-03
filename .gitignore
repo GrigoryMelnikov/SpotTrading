@@ -1,3 +1,4 @@
 .idea/
 BinanceWrapperTester.py
 BinanceWrapper/__pycache__/
+logs/
