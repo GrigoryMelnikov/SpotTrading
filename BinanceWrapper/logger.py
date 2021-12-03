@@ -1,23 +1,26 @@
 import logging
-
+import os
 
 class Logger:
     def __init__(self,  service='SpotTrading',
                         stream=None,
                         database=None):
         self.logger = logging.getLogger(f'{service}Log')
+        log_file_name = f'logs/{service}.log'
+        os.makedirs(os.path.dirname(log_file_name), exist_ok=True)
         # Init handlers
         handlers = [
-            logging.FileHandler(filename=f'logs/{service}.log',
-                                mode='w',
-                                encoding='utf-8'),
+            logging.FileHandler(filename=log_file_name,
+                                mode='a',
+                                encoding='utf-8'
+                                ),
             # if stream not provided output to stderr
             logging.StreamHandler(stream=stream)
         ]
         for h in handlers:
             h.setLevel(logging.DEBUG),
             h.setFormatter('%(asctime)s %(levelname)s %(message)s')
-            self.handlers = self.logger.addHandler(h)
+            self.logger.addHandler(h)
 
     # def add_stream_logger(self):
     #     print('stop')

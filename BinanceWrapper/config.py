@@ -21,6 +21,10 @@ class Config:
         if self.testnet is True and self.testnet_api_key is None:
             raise ValueError(
                 'Testnet option specified but API Key is not provided. Please put into environmental variable TestnetApiKey or put into .BinanceWrapper.ini file')
+        self.testnet_secret_key = os.environ.get('TestnetSecretKey') or parseConfig('TESTNET_SECRET_KEY')
+        if self.testnet is True and self.testnet_secret_key is None:
+            raise ValueError(
+                'Testnet option specified but Secret Key is not provided. Please put into environmental variable TestnetSecretKey or put into .BinanceWrapper.ini file')
 
         # API Key
         self.api_key = os.environ.get('BinanceApiKey') or parseConfig('BINANCE_API_KEY')
